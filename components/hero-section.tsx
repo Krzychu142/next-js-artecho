@@ -22,7 +22,7 @@ const HeroSection = () => {
         <Link
           href="/"
           className={
-            "text-white text-sm md:text-xl border-2 p-0.5 md:p-3 rounded-3xl m-2 md:m-3 transition duration-200 ease-in-out hover:bg-black hover:border-black"
+            "text-white text-sm md:text-xl border-2 p-2 md:p-3 rounded-3xl m-2 md:m-3 transition duration-200 ease-in-out hover:bg-black hover:border-black"
           }
         >
           register now

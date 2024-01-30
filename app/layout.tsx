@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import MainHeader from "@/components/main-header";
+import MainFooter from "@/components/main-footer";
 
 export const metadata: Metadata = {
   title: "Art Echo Designe",
@@ -8,8 +9,6 @@ export const metadata: Metadata = {
 };
 
 import { League_Spartan, Quicksand } from "next/font/google";
-import MainFooter from "@/components/main-footer";
-
 const leagueSpartan = League_Spartan({
   subsets: ["latin"],
   display: "swap",
