@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 const MainHeader = () => {
   const [prevScrollPosition, setPrevScrollPosition] = useState(0);
   const [isHeaderVisible, setisHeaderVisible] = useState(true);
-  const [isAsideVisible, setIsAsideVisible] = useState(false);
+  // const [isAsideVisible, setIsAsideVisible] = useState(false);
 
   const handleScroll = () => {
     const currentScrollPos = window.scrollY;
