@@ -9,11 +9,13 @@ import {
   ShoppingOutlined,
 } from "@ant-design/icons";
 import { useEffect, useState } from "react";
+import AsideNavigation from "./aside-nav";
 
 const MainHeader = () => {
   const [prevScrollPosition, setPrevScrollPosition] = useState(0);
   const [isHeaderVisible, setisHeaderVisible] = useState(true);
-  // const [isAsideVisible, setIsAsideVisible] = useState(false);
+  const [isAsideNavigationVisible, setIsAsideNavigationVisible] =
+    useState(false);
 
   const handleScroll = () => {
     const currentScrollPos = window.scrollY;
@@ -53,10 +55,20 @@ const MainHeader = () => {
 
           <ShoppingOutlined className="text-3xl md:text-4xl transition duration-200 ease-in-out hover:scale-125" />
 
-          <MenuOutlined className="text-3xl md:text-4xl transition duration-200 ease-in-out hover:scale-125" />
+          <button
+            onClick={() => {
+              setIsAsideNavigationVisible((prev) => !prev);
+            }}
+          >
+            <MenuOutlined className="text-3xl md:text-4xl transition duration-200 ease-in-out hover:scale-125" />
+          </button>
         </div>
       </header>
       {/* <aside className="min-h-screen">aside here</aside> */}
+      <AsideNavigation
+        isAsideNavigationVisible={isAsideNavigationVisible}
+        setIsAsideNavigationVisible={setIsAsideNavigationVisible}
+      />
     </>
   );
 };
