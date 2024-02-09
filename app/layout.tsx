@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import MainHeader from "@/components/main-header";
-import MainFooter from "@/components/main-footer";
+import MainHeader from "@/components/main-page/main-header";
+import MainFooter from "@/components/main-page/main-footer";
 
 export const metadata: Metadata = {
   title: "Art Echo Designe",
