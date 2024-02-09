@@ -64,7 +64,6 @@ const MainHeader = () => {
           </button>
         </div>
       </header>
-      {/* <aside className="min-h-screen">aside here</aside> */}
       <AsideNavigation
         isAsideNavigationVisible={isAsideNavigationVisible}
         setIsAsideNavigationVisible={setIsAsideNavigationVisible}
