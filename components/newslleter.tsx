@@ -14,18 +14,16 @@ export const NewslleterSection = () => {
           Privacy Policy
         </Link>
       </p>
-      <div className="flex">
+      <div className="w-full flex flex-col items-center gap-2 md:flex-row md:gap-0 md:justify-center">
         <input
           type="email"
           placeholder="Email address"
-          className="pl-2 md:pl-3 border-2 border-r-0 border-custom-blue rounded-l-3xl text-black focus:border-custom-blue focus:ring-0 focus:outline-none placeholder-custom-blue"
+          className="w-full md:w-80 max-w-96 p-2 border-2 border-r-0 border-custom-blue rounded-3xl text-black focus:border-custom-blue focus:ring-0 focus:outline-none placeholder-custom-blue md:rounded-r-none md:border-r-0"
         />
-        <button className="p-2 md:p-3 border-2 border-l-0 border-custom-blue rounded-r-3xl hover:bg-white hover:text-black transition duration-200 ease-in-out ">
+        <button className="w-full md:w-auto max-w-96 p-2 border-2 border-custom-blue rounded-3xl hover:bg-white hover:text-black transition duration-200 ease-in-out md:rounded-l-none md:border-l-0">
           Subscribe
         </button>
       </div>
     </section>
   );
 };
-
-// px-4 md:px-8 py-4
