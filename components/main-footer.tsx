@@ -8,49 +8,34 @@ import Link from "next/link";
 
 import miniLogo from "@/public/icons/ae-background.png";
 import { NewslleterSection } from "./newslleter";
+import { LinkObjectType } from "@/types/LinkObjectType";
 
 const MainFooter = () => {
+  const informationsLinksArray: LinkObjectType[] = [
+    { caption: "Store Regulations", href: "/" },
+    { caption: "Privacy Policy", href: "/" },
+    { caption: "Return Policy", href: "/" },
+    { caption: "Payment and Delivery", href: "/" },
+  ];
+
   return (
     <>
       <NewslleterSection />
       <footer className="min-h-1/2screen bg-black text-white flex flex-col justify-around px-4 md:px-8 py-4 gap-12">
         <div className="grid grid-flow-row md:grid-flow-col justify-start md:justify-around md:items-baseline gap-8 ">
-          {/* TODO: move to separated component */}
           <div className="flex flex-col space-y-2">
             <h4 className="capitalize text-lg md:text-xl">More informations</h4>
             <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/"
-                  className="hover:text-custom-blue transition duration-200 ease-in-out font-bold text-sm md:text-base"
-                >
-                  Store Regulations
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="hover:text-custom-blue transition duration-200 ease-in-out font-bold text-sm md:text-base"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="hover:text-custom-blue transition duration-200 ease-in-out font-bold text-sm md:text-base"
-                >
-                  Return Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/"
-                  className="hover:text-custom-blue transition duration-200 ease-in-out font-bold text-sm md:text-base"
-                >
-                  Payment and Delivery
-                </Link>
-              </li>
+              {informationsLinksArray.map((linkObject, index) => (
+                <li key={index}>
+                  <Link
+                    href={linkObject.href}
+                    className="hover:text-custom-blue transition duration-200 ease-in-out font-bold text-sm md:text-base"
+                  >
+                    {linkObject.caption}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="flex flex-col space-y-2">
