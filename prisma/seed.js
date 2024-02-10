@@ -17,6 +17,7 @@ async function main() {
         price: parseFloat((10.99 * i).toFixed(2)),
         promotionalPrice:
           i % 2 === 0 ? parseFloat((9.99 * i).toFixed(2)) : null,
+        currency: "PLN",
         quantity: 100 * i,
         isAvilable: true,
         images: {

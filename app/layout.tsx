@@ -29,7 +29,7 @@ export default function RootLayout({
       lang="en"
       className={`${leagueSpartan.className} ${quicksand.className}`}
     >
-      <body className="bg-neutral-300 min-h-screen">
+      <body className=" min-h-screen">
         <MainHeader />
         {children}
         <MainFooter />

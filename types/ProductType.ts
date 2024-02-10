@@ -7,6 +7,7 @@ export type ProductType = {
   EAN: string;
   price: number;
   promotionalPrice: number | null;
+  currency: string;
   addedAt: Date;
   quantity: number;
   isAvilable: boolean;
