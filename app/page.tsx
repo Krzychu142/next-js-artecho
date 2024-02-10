@@ -1,10 +1,22 @@
 import HeroSection from "@/components/main-page/hero-section";
+import ProductsGrid from "@/components/main-page/products-grid";
+import { getAllProducts } from "@/lib/products";
 
-export default function Home() {
+async function Products() {
+  const products = await getAllProducts();
+
+  return products;
+}
+
+export default async function Home() {
+  const products = await Products();
+
+  console.log(products, "products");
+
   return (
     <main>
       <HeroSection />
-      <h1>Main Page</h1>
+      <ProductsGrid />
     </main>
   );
 }
