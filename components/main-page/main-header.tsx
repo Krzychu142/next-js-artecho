@@ -31,7 +31,7 @@ const MainHeader = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [prevScrollPosition]);
+  }, [prevScrollPosition, handleScroll]);
 
   return (
     <>
