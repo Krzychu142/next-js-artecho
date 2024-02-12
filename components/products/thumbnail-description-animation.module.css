@@ -16,12 +16,6 @@
     transition: opacity 300ms, transform 300ms;
 }
 
-/* .animated:hover::after,
-.animated:focus::after {
-    opacity: 1;
-    transform: translate3d(0, 0.2em, 0);
-} */
-
 .animated.active::after {
     opacity: 1;
     transform: translate3d(0, 0.2em, 0);

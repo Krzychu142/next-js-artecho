@@ -22,7 +22,7 @@ const ThumbnaulImage: React.FC<ThumbnaulImageProps> = ({
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className={`${
           isMouseOver ? "opacity-0" : "opacity-100"
-        } transition-opacity duration-200 ease-in-out"`}
+        } transition-opacity duration-200 ease-in-out object-cover object-center`}
       />
       <Image
         src={images[1].url}
@@ -31,7 +31,7 @@ const ThumbnaulImage: React.FC<ThumbnaulImageProps> = ({
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className={`${
           isMouseOver ? "opacity-100" : "opacity-0"
-        } transition-opacity duration-200 ease-in-out`}
+        } transition-opacity duration-200 ease-in-out object-cover object-center`}
       />
     </div>
   );

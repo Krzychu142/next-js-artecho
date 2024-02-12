@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./thumbnail-description-animation.module.css";
+import Link from "next/link";
 
 interface ThumbnailDescriptionProps {
   name: string;
@@ -17,14 +18,16 @@ const ThumbnailDescription: React.FC<ThumbnailDescriptionProps> = ({
   isMouseOver,
 }) => {
   return (
-    <div>
-      <h4
-        className={`font-bold my-2 ${classes.animated} ${
-          isMouseOver ? classes.active : ""
-        }`}
-      >
-        {name}
-      </h4>
+    <section>
+      <Link title="Move to page of this product" href="/">
+        <h4
+          className={`font-bold my-2 ${classes.animated} ${
+            isMouseOver ? classes.active : ""
+          }`}
+        >
+          {name}
+        </h4>
+      </Link>
       <p className={`${promotionalPrice && "line-through "} `}>
         {price}
         {currency}
@@ -35,7 +38,7 @@ const ThumbnailDescription: React.FC<ThumbnailDescriptionProps> = ({
           {currency}
         </p>
       )}
-    </div>
+    </section>
   );
 };
 
