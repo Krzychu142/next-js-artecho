@@ -1,4 +1,5 @@
 import SingleProductHeader from "@/components/product/single-product-header";
+import Image from "next/image";
 import React from "react";
 
 const SingleProductPage = () => {
@@ -11,7 +12,19 @@ const SingleProductPage = () => {
         currency="PLN"
       />
       <main>
-        <section>galery</section>
+        <section className="py-4">
+          <div className="relative w-full h-1/2screen">
+            <Image
+              src={
+                "https://stoprocent.com/cdn/shop/files/bluzaLogo.png?v=1697656725&width=640"
+              }
+              alt="image"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="flex justify-center">THERE WILL BE MINIATURES</div>
+        </section>
         <section>content</section>
       </main>
     </div>
