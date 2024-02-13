@@ -10,12 +10,14 @@ import {
 } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import AsideNavigation from "./aside-nav";
+import { usePathname } from "next/navigation";
 
 const MainHeader = () => {
   const [prevScrollPosition, setPrevScrollPosition] = useState(0);
   const [isHeaderVisible, setisHeaderVisible] = useState(true);
   const [isAsideNavigationVisible, setIsAsideNavigationVisible] =
     useState(false);
+  const path = usePathname();
 
   const handleScroll = () => {
     const currentScrollPos = window.scrollY;
@@ -32,6 +34,10 @@ const MainHeader = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [prevScrollPosition, handleScroll]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [path]);
 
   return (
     <>
