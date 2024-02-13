@@ -11,5 +11,6 @@ export type ProductType = {
   addedAt: Date;
   quantity: number;
   isAvilable: boolean;
+  slug: string;
   images: ImageType[]; 
 };

@@ -11,7 +11,7 @@ interface ThumbnailProductProps {
 }
 
 const ThumbnailProduct: React.FC<ThumbnailProductProps> = ({ product }) => {
-  const { id, images, name, price, currency, promotionalPrice } = product;
+  const { id, images, name, price, currency, promotionalPrice, slug } = product;
 
   //TODO: check if images has minum 2 url-s
 
@@ -32,6 +32,7 @@ const ThumbnailProduct: React.FC<ThumbnailProductProps> = ({ product }) => {
           promotionalPrice={promotionalPrice}
           currency={currency}
           isMouseOver={isMouseOver}
+          slug={slug}
         />
         <ThumbnaulButton isMouseOver={isMouseOver} />
       </div>

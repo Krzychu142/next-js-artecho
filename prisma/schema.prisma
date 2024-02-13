@@ -11,13 +11,14 @@ model Product {
   id               Int      @id @default(autoincrement())
   name             String
   description      String
-  EAN              String
+  EAN              String   @unique
   price            Float
   promotionalPrice Float?
   currency         String   @default("PLN")
   addedAt          DateTime @default(now())
   quantity         Int
   isAvilable       Boolean  @default(true)
+  slug             String   @unique
   images           Image[]
 }
 

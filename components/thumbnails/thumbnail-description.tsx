@@ -8,6 +8,7 @@ interface ThumbnailDescriptionProps {
   price: number;
   currency: string;
   isMouseOver: boolean;
+  slug: string;
 }
 
 const ThumbnailDescription: React.FC<ThumbnailDescriptionProps> = ({
@@ -16,10 +17,11 @@ const ThumbnailDescription: React.FC<ThumbnailDescriptionProps> = ({
   price,
   currency,
   isMouseOver,
+  slug,
 }) => {
   return (
     <section>
-      <Link title="Move to page of this product" href="/">
+      <Link title="Move to page of this product" href={`/product/${slug}`}>
         <h4
           className={`font-bold my-2 ${classes.animated} ${
             isMouseOver ? classes.active : ""
