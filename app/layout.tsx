@@ -30,7 +30,7 @@ export default function RootLayout({
       lang="en"
       className={`${leagueSpartan.className} ${quicksand.className}`}
     >
-      <body className=" min-h-screen">
+      <body>
         <AntdRegistry>
           <MainHeader />
           {children}
