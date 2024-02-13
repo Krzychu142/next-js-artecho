@@ -3,11 +3,11 @@ import React from "react";
 import ThumbnailProduct from "./thumbnail-product";
 import ThumbnailTitle from "./thumbnail-title";
 
-interface ProductsGridProps {
+interface ThumbnailsGridProps {
   products: ProductType[];
 }
 
-const ProductsGrid: React.FC<ProductsGridProps> = ({ products }) => {
+const ThumbnailsGrid: React.FC<ThumbnailsGridProps> = ({ products }) => {
   // ONLY FOR DEV
   const duplicatedProducts = [...products, ...products, ...products];
 
@@ -23,4 +23,4 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ products }) => {
   );
 };
 
-export default ProductsGrid;
+export default ThumbnailsGrid;

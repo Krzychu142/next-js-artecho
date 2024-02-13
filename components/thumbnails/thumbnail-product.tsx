@@ -25,7 +25,7 @@ const ThumbnailProduct: React.FC<ThumbnailProductProps> = ({ product }) => {
       onMouseLeave={() => setMouseOver(false)}
     >
       <ThumbnaulImage images={images} name={name} isMouseOver={isMouseOver} />
-      <div className="max-w-7/12 w-72 mb-4 flex items-center justify-between">
+      <div className="max-w-7/12 w-64 md:w-72 mb-4 flex items-center justify-between">
         <ThumbnailDescription
           name={name}
           price={price}

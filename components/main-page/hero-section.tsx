@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const HeroSection = () => {
   return (
-    <section className="h-1/2screen lg:h-screen relative">
+    <section className="h-3/4screen lg:h-screen relative">
       <div className="absolute inset-0 ">
         <Image
           src={heroImage}

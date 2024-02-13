@@ -1,5 +1,5 @@
 import HeroSection from "@/components/main-page/hero-section";
-import ProductsGrid from "@/components/products/products-grid";
+import ProductsGrid from "@/components/thumbnails/thumbnails-grid";
 import { getAllProducts } from "@/lib/products";
 
 async function Products() {
