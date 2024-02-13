@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import MainHeader from "@/components/main-header";
-import MainFooter from "@/components/main-footer";
+import MainHeader from "@/components/main-page/main-header";
+import MainFooter from "@/components/main-page/main-footer";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 export const metadata: Metadata = {
   title: "Art Echo Designe",
@@ -29,10 +30,12 @@ export default function RootLayout({
       lang="en"
       className={`${leagueSpartan.className} ${quicksand.className}`}
     >
-      <body className="bg-neutral-300 min-h-screen">
-        <MainHeader />
-        {children}
-        <MainFooter />
+      <body>
+        <AntdRegistry>
+          <MainHeader />
+          {children}
+          <MainFooter />
+        </AntdRegistry>
       </body>
     </html>
   );

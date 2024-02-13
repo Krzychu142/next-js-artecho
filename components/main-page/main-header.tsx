@@ -10,12 +10,14 @@ import {
 } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import AsideNavigation from "./aside-nav";
+import { usePathname } from "next/navigation";
 
 const MainHeader = () => {
   const [prevScrollPosition, setPrevScrollPosition] = useState(0);
   const [isHeaderVisible, setisHeaderVisible] = useState(true);
   const [isAsideNavigationVisible, setIsAsideNavigationVisible] =
     useState(false);
+  const path = usePathname();
 
   const handleScroll = () => {
     const currentScrollPos = window.scrollY;
@@ -31,12 +33,16 @@ const MainHeader = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [prevScrollPosition]);
+  }, [prevScrollPosition, handleScroll]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [path]);
 
   return (
     <>
       <header
-        className={`fixed top-0 z-30 w-full flex justify-between items-center px-4 md:px-16 py-2 bg-white transition-transform duration-200 ease-in-out ${
+        className={`fixed top-0 h-24 z-10 w-full flex justify-between items-center px-4 md:px-16 bg-white transition-transform duration-200 ease-in-out ${
           isHeaderVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
