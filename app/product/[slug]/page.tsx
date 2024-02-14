@@ -23,7 +23,108 @@ const SingleProductPage = () => {
               className="object-cover"
             />
           </div>
-          <div className="flex justify-center">THERE WILL BE MINIATURES</div>
+          <div className="flex overflow-x-auto justify-start border-b-2 border-custom-blue gap-x-2 p-2">
+            <figure className="relative w-12 h-12 shrink-0">
+              <Image
+                src={
+                  "https://stoprocent.com/cdn/shop/files/bluzaLogo.png?v=1697656725&width=640"
+                }
+                alt="image"
+                fill
+                className="object-cover"
+              />
+            </figure>
+            <figure className="relative w-12 h-12 shrink-0">
+              <Image
+                src={
+                  "https://stoprocent.com/cdn/shop/files/bluzaLogo.png?v=1697656725&width=640"
+                }
+                alt="image"
+                fill
+                className="object-cover"
+              />
+            </figure>
+            <figure className="relative w-12 h-12 shrink-0">
+              <Image
+                src={
+                  "https://stoprocent.com/cdn/shop/files/bluzaLogo.png?v=1697656725&width=640"
+                }
+                alt="image"
+                fill
+                className="object-cover"
+              />
+            </figure>
+            <figure className="relative w-12 h-12 shrink-0">
+              <Image
+                src={
+                  "https://stoprocent.com/cdn/shop/files/bluzaLogo.png?v=1697656725&width=640"
+                }
+                alt="image"
+                fill
+                className="object-cover"
+              />
+            </figure>
+            <figure className="relative w-12 h-12 shrink-0">
+              <Image
+                src={
+                  "https://stoprocent.com/cdn/shop/files/bluzaLogo.png?v=1697656725&width=640"
+                }
+                alt="image"
+                fill
+                className="object-cover"
+              />
+            </figure>
+            <figure className="relative w-12 h-12 shrink-0">
+              <Image
+                src={
+                  "https://stoprocent.com/cdn/shop/files/bluzaLogo.png?v=1697656725&width=640"
+                }
+                alt="image"
+                fill
+                className="object-cover"
+              />
+            </figure>
+            <figure className="relative w-12 h-12 shrink-0">
+              <Image
+                src={
+                  "https://stoprocent.com/cdn/shop/files/bluzaLogo.png?v=1697656725&width=640"
+                }
+                alt="image"
+                fill
+                className="object-cover"
+              />
+            </figure>
+            <figure className="relative w-12 h-12 shrink-0">
+              <Image
+                src={
+                  "https://stoprocent.com/cdn/shop/files/bluzaLogo.png?v=1697656725&width=640"
+                }
+                alt="image"
+                fill
+                className="object-cover"
+              />
+            </figure>
+            <figure className="relative w-12 h-12 shrink-0">
+              <Image
+                src={
+                  "https://stoprocent.com/cdn/shop/files/bluzaLogo.png?v=1697656725&width=640"
+                }
+                alt="image"
+                fill
+                className="object-cover"
+              />
+            </figure>
+            <figure className="relative w-12 h-12 shrink-0">
+              <Image
+                src={
+                  "https://stoprocent.com/cdn/shop/files/bluzaLogo.png?v=1697656725&width=640"
+                }
+                alt="image"
+                fill
+                className="object-cover"
+              />
+            </figure>
+          </div>
         </section>
         <section>content</section>
       </main>
