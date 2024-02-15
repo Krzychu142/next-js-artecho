@@ -34,6 +34,11 @@ const SingleProductHeader: React.FC<SingleProductHeaderProps> = ({
             {currency}
           </p>
         )}
+        {/* * TODO: add to schema */}
+        <p>
+          Lowest price within the last 30 days: {price}
+          {currency}
+        </p>
       </div>
       <p className="text-sm font-thin">
         Delivery costs included in the summary.
