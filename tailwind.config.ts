@@ -13,9 +13,13 @@ const config: Config = {
       },
       height: {
         '1/2screen': '50vh',
+        '3/4screen': '75vh'
       },
       minHeight: {
         '1/2screen': '50vh',
+      },
+      minWidth: {
+        'w-1/2screen': '50vw',
       },
       fontFamily: {
         spartan: ['League Spartan', 'sans-serif'],
