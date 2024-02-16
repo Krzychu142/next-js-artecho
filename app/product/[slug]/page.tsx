@@ -1,20 +1,54 @@
+import SingleProductContent from "@/components/product/single-prodcut-content";
+import SingleProductGallery from "@/components/product/single-product-gallery";
 import SingleProductHeader from "@/components/product/single-product-header";
 import React from "react";
+import { NextPage } from "next";
+import { getProductBySlug } from "@/lib/products";
+import { notFound } from "next/navigation";
+import { ProductType } from "@/types/ProductType";
 
-const SingleProductPage = () => {
+interface SingleProductPageProps {
+  params: {
+    slug: string;
+  };
+}
+
+const SingleProductPage: NextPage<SingleProductPageProps> = async ({
+  params,
+}) => {
+  const product: ProductType = await getProductBySlug(params.slug);
+
+  if (!product) {
+    notFound();
+  }
+
+  const {
+    id,
+    name,
+    description,
+    EAN,
+    price,
+    promotionalPrice,
+    currency,
+    addedAt,
+    quantity,
+    isAvilable,
+    images,
+  } = product;
+
   return (
-    <div className="mt-24">
-      <SingleProductHeader
-        name="Bluza Stoprocent RIPPEDTAG Czarna"
-        price={349.99}
-        promotionalPrice={339.99}
-        currency="PLN"
-      />
-      <main>
-        <section>galery</section>
-        <section>content</section>
-      </main>
-    </div>
+    <main className="mt-24 flex flex-col lg:flex-row items-center lg:items-start justify-center mb-8">
+      <SingleProductGallery images={images} />
+      <div className="max-w-screen-md">
+        <SingleProductHeader name={name} />
+        <SingleProductContent
+          description={description}
+          promotionalPrice={promotionalPrice}
+          price={price}
+          currency={currency}
+        />
+      </div>
+    </main>
   );
 };
 

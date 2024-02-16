@@ -59,6 +59,7 @@ const MainHeader = () => {
         <div className="flex space-x-3 md:space-x-4">
           <SearchOutlined className="text-3xl md:text-4xl transition duration-200 ease-in-out hover:scale-125" />
 
+          {/* TODO: check Badge component */}
           <ShoppingOutlined className="text-3xl md:text-4xl transition duration-200 ease-in-out hover:scale-125" />
 
           <button

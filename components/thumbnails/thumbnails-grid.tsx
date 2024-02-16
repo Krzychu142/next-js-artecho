@@ -13,7 +13,7 @@ const ThumbnailsGrid: React.FC<ThumbnailsGridProps> = ({ products }) => {
 
   return (
     <main className="flex justify-center">
-      <ul className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-6">
+      <ul className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 py-6">
         <ThumbnailTitle title={"recent works"} />
         {duplicatedProducts.map((product, index) => (
           <ThumbnailProduct product={product} key={index} />

@@ -8,3 +8,16 @@ export async function getAllProducts() {
   });
   return products;
 }
+
+export async function getProductBySlug(slug: string) {
+  const product = await prisma.product.findUniqueOrThrow({
+    where: {
+      slug: slug,
+    },
+    include: {
+      images: true,
+    },
+  });
+
+  return product;
+}
