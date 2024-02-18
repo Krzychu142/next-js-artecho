@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import miniLogo from "@/public/icons/ae-background.png";
-import { NewslleterSection } from "./newslleter";
+import { NewsletterSection } from "./newsletter";
 import { LinkObjectType } from "@/types/LinkObjectType";
 
 const MainFooter = () => {
@@ -20,7 +20,7 @@ const MainFooter = () => {
 
   return (
     <>
-      <NewslleterSection />
+      <NewsletterSection />
       <footer className="min-h-1/2screen bg-black text-white flex flex-col justify-around px-4 md:px-8 py-4 gap-12">
         <div className="grid grid-flow-row md:grid-flow-col justify-start md:justify-around md:items-baseline gap-8 ">
           <div className="flex flex-col space-y-2">

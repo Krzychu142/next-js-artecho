@@ -4,7 +4,6 @@ import Image from "next/image";
 import React, { useState } from "react";
 import classes from "./single-product-gallery.module.css";
 import { ImageType } from "@/types/ImageType";
-import { ArrowsAltOutlined } from "@ant-design/icons";
 
 interface SingleProductGalleryProps {
   images: ImageType[];
