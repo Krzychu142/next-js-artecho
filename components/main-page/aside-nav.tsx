@@ -23,8 +23,8 @@ const AsideNavigation: React.FC<AsideNavigationProps> = ({
     { caption: "Home", href: "/" },
     { caption: "Contact", href: "/" },
     { caption: "About", href: "/" },
-    { caption: "Register", href: "/" },
-    { caption: "Login", href: "/" },
+    { caption: "Register", href: "/auth/register" },
+    { caption: "Login", href: "/auth/login" },
   ];
 
   return (
