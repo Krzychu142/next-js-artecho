@@ -7,13 +7,13 @@ export async function POST(req: NextRequest) {
 
     if (!email || email.trim() === "" || !email.includes("@")) {
         return Response.json({
-            error: "Invalid email address provided."
+            message: "Invalid email address provided."
         }, {status: 400})
     }
 
     if(await isEmailInBase(email)) {
         return Response.json({
-            error: "Email already subscribe newsletter."
+            message: "Email already subscribe newsletter."
         }, {status: 409})
     }
 
@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
         }, {status: 200});
     } catch (error) {
         return Response.json({
-            error: "Ups... something goes wrong. Pleas try later."
+            message: "Ups... something goes wrong. Pleas try later."
         }, {status: 500});
     }
 
