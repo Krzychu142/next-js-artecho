@@ -60,7 +60,7 @@ const NewsletterForm = () => {
         <input
           type="email"
           placeholder="Email address"
-          className="w-full md:w-80 max-w-96 p-2 border-2 border-r-0 border-custom-blue rounded-3xl text-black focus:border-custom-blue focus:ring-0 focus:outline-none placeholder-custom-blue md:rounded-r-none md:border-r-0"
+          className="w-full max-w-96 p-2 border-2 border-r-0 border-custom-blue rounded-3xl text-black focus:border-custom-blue focus:ring-0 focus:outline-none placeholder-custom-blue md:rounded-r-none md:border-r-0"
           name="email"
           required
           value={providedEmail}

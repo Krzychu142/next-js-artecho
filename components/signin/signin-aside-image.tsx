@@ -2,9 +2,9 @@ import Image from "next/image";
 import React from "react";
 import asideImage from "@/public/images/register-signin-image.jpg";
 
-const AsideImage = () => {
+const SignInAsideImage = () => {
   return (
-    <div className="relative inset-0 min-h-screen w-1/2screen">
+    <div className="relative inset-0 min-h-screen w-1/2screen hidden md:block">
       <Image
         src={asideImage}
         alt="absolute Geometric shape background in engraving style."
@@ -16,4 +16,4 @@ const AsideImage = () => {
   );
 };
 
-export default AsideImage;
+export default SignInAsideImage;

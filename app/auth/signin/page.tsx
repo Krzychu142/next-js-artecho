@@ -1,31 +1,12 @@
-"use client";
-
-import AsideImage from "@/components/signin/aside-image";
-import { signIn, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import React from "react";
+import AsideImage from "@/components/signin/signin-aside-image";
+import SignInForm from "@/components/signin/signin-form";
 
 const SignInPage = () => {
-  const { data: session, status } = useSession();
-  const router = useRouter();
-
-  const handleLogin = () => {
-    signIn("google").then(() => {
-      if (status === "authenticated") {
-        router.push("/");
-      }
-    });
-  };
-
   return (
-    <main className="mt-24 pt-8 flex">
+    <main className="mt-24 pt-8 flex justify-center w-full">
       <AsideImage />
-      <div className="w-full max-w-1/2screen flex justify-center">
-        <form action="">
-          <input type="text" placeholder="email" />
-          <input type="text" placeholder="password" />
-          <button onClick={handleLogin}>sing in</button>
-        </form>
+      <div className="w-full max-w-96 md:max-w-1/2screen h-1/2screen md:h-screen flex justify-center md:items-center px-4 md:px-12 ">
+        <SignInForm />
       </div>
     </main>
   );
