@@ -4,7 +4,6 @@ import Image from "next/image";
 import React, { useState } from "react";
 import classes from "./single-product-gallery.module.css";
 import { ImageType } from "@/types/ImageType";
-import { ArrowsAltOutlined } from "@ant-design/icons";
 
 interface SingleProductGalleryProps {
   images: ImageType[];
@@ -26,7 +25,7 @@ const SingleProductGallery: React.FC<SingleProductGalleryProps> = ({
   };
 
   return (
-    <section className="w-full max-w-xl min-w-w-1/2screen mb-8">
+    <section className="w-full max-w-xl min-w-1/2screen mb-8">
       <div
         className={` ${
           isFullscreen
