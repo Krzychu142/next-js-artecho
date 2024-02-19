@@ -15,6 +15,7 @@ const NewsletterFormButton: React.FC<NewsletterFormButtonProps> = ({
         isButtonDisabled ? "cursor-not-allowed" : "cursor-pointer"
       }`}
       type="submit"
+      title={`${isButtonDisabled ? "Provide email" : "Click to subscribe"}`}
       disabled={isButtonDisabled}
     >
       Subscribe
