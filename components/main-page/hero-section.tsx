@@ -20,7 +20,7 @@ const HeroSection = () => {
           New way of designe
         </h1>
         <Link
-          href="/"
+          href="/auth/register"
           className={
             "text-white text-sm md:text-xl border-2 p-2 md:p-3 rounded-3xl m-2 md:m-3 transition duration-200 ease-in-out hover:bg-black hover:border-black"
           }
