@@ -7,6 +7,7 @@ import {
 import Link from "next/link";
 import React from "react";
 import { LinkObjectType } from "@/types/LinkObjectType";
+import { IconLinkObjectType } from "@/types/IconLinkObjectType";
 
 interface AsideNavigationProps {
   isAsideNavigationVisible: boolean;
@@ -25,6 +26,12 @@ const AsideNavigation: React.FC<AsideNavigationProps> = ({
     { caption: "About", href: "/" },
     { caption: "Register", href: "/auth/register" },
     { caption: "Login", href: "/auth/login" },
+  ];
+
+  const iconsLinksArray: IconLinkObjectType[] = [
+    { href: "/", icon: <FacebookOutlined className="text-lg" /> },
+    { href: "/", icon: <InstagramOutlined className="text-lg" /> },
+    { href: "/", icon: <MailOutlined className="text-lg" /> },
   ];
 
   return (
@@ -62,30 +69,16 @@ const AsideNavigation: React.FC<AsideNavigationProps> = ({
         </nav>
         <footer className="pb-8">
           <ul className="flex justify-center gap-4">
-            <li>
-              <Link
-                href="/"
-                className="hover:text-custom-blue transition duration-200 ease-in-out md:text-base"
-              >
-                <FacebookOutlined className="text-lg" />
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/"
-                className="hover:text-custom-blue transition duration-200 ease-in-out md:text-base"
-              >
-                <InstagramOutlined className="text-lg" />
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/"
-                className="hover:text-custom-blue transition duration-200 ease-in-out md:text-base"
-              >
-                <MailOutlined className="text-lg" />
-              </Link>
-            </li>
+            {iconsLinksArray.map((link, index) => (
+              <li key={index}>
+                <Link
+                  href={link.href}
+                  className="hover:text-custom-blue transition duration-200 ease-in-out md:text-base"
+                >
+                  {link.icon}
+                </Link>
+              </li>
+            ))}
           </ul>
         </footer>
       </aside>
