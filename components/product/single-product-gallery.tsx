@@ -25,7 +25,7 @@ const SingleProductGallery: React.FC<SingleProductGalleryProps> = ({
   };
 
   return (
-    <section className="w-full max-w-xl min-w-w-1/2screen mb-8">
+    <section className="w-full max-w-xl min-w-1/2screen mb-8">
       <div
         className={` ${
           isFullscreen

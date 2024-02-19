@@ -25,7 +25,7 @@ const AsideNavigation: React.FC<AsideNavigationProps> = ({
     { caption: "Contact", href: "/" },
     { caption: "About", href: "/" },
     { caption: "Register", href: "/auth/register" },
-    { caption: "Login", href: "/auth/login" },
+    { caption: "SignIn", href: "/auth/signin" },
   ];
 
   const iconsLinksArray: IconLinkObjectType[] = [

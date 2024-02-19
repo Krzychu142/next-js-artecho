@@ -10,6 +10,7 @@ export const authOptions: AuthOptions = {
     session: {
         strategy: "jwt"
     },
+    secret: process.env.NEXTAUTH_SECRET,
     adapter: PrismaAdapter(prisma),
     providers: [
         GoogleProvider({
@@ -66,6 +67,10 @@ export const authOptions: AuthOptions = {
             session.user.role = token.role;
             return session;
         }
+    },
+
+    pages: {
+        signIn: '/auth/signin'
     }
 }
 
