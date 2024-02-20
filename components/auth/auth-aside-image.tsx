@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import asideImage from "@/public/images/register-signin-image.jpg";
 
-const SignInAsideImage = () => {
+const AuthAsideImage = () => {
   return (
     <div className="relative inset-0 min-h-screen w-1/2screen hidden md:block">
       <div className="absolute inset-0 bg-custom-blue bg-opacity-75 z-0"></div>
@@ -16,4 +16,4 @@ const SignInAsideImage = () => {
   );
 };
 
-export default SignInAsideImage;
+export default AuthAsideImage;
