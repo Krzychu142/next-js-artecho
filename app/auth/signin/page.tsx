@@ -1,5 +1,5 @@
-import AsideImage from "@/components/signin/signin-aside-image";
-import SignInForm from "@/components/signin/signin-form";
+import AsideImage from "@/components/auth/auth-aside-image";
+import SignInForm from "@/components/auth/signin-form";
 
 const SignInPage = () => {
   return (
