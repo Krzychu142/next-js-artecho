@@ -3,12 +3,18 @@ import React from "react";
 import { formButtonClasses } from "./style-classes/formButtonClasses";
 import { formElementClasses } from "./style-classes/formElementClasses";
 
-const SignInWithGoogleButton = () => {
+interface AuthWithGoogleButtonProps {
+  content: string;
+}
+
+const AuthWithGoogleButton: React.FC<AuthWithGoogleButtonProps> = ({
+  content,
+}) => {
   return (
     <button
       className={`${formElementClasses} ${formButtonClasses} flex justify-center items-center`}
     >
-      Sign in with Google{" "}
+      {content}{" "}
       <GoogleOutlined
         style={{
           fontSize: "19px",
@@ -20,4 +26,4 @@ const SignInWithGoogleButton = () => {
   );
 };
 
-export default SignInWithGoogleButton;
+export default AuthWithGoogleButton;

@@ -1,11 +1,17 @@
 "use client";
 
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import React, { useState } from "react";
 import { iconClasses } from "./style-classes/iconClasses";
 import { formElementClasses } from "./style-classes/formElementClasses";
 
-const SignInFormPasswordInput = () => {
+interface AuthFormPasswordInputProps {
+  placeholder: string;
+}
+
+const AuthFormPasswordInput: React.FC<AuthFormPasswordInputProps> = ({
+  placeholder,
+}) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const togglePasswordVisibility = () => {
@@ -16,7 +22,7 @@ const SignInFormPasswordInput = () => {
     <>
       <input
         type={showPassword ? "text" : "password"}
-        placeholder="Password"
+        placeholder={placeholder}
         className={`${formElementClasses} pr-10`}
       />
 
@@ -39,4 +45,4 @@ const SignInFormPasswordInput = () => {
   );
 };
 
-export default SignInFormPasswordInput;
+export default AuthFormPasswordInput;
