@@ -8,9 +8,9 @@ const SignInForm = () => {
   return (
     <form className="w-full flex flex-col gap-4 items-center justify-center mb-8">
       <input type="email" placeholder="Email" className={formElementClasses} />
-      <div className="relative w-full max-w-80 sm:w-80 lg:w-96 lg:max-w-96">
-        <AuthFormPasswordInput placeholder="Password" />
-      </div>
+
+      {/* <AuthFormPasswordInput placeholder="Password" name="password" /> */}
+
       <button className={`${formElementClasses} ${formButtonClasses}`}>
         Sign in
       </button>
