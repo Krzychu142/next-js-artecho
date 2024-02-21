@@ -5,13 +5,16 @@ import { formElementClasses } from "./style-classes/formElementClasses";
 
 interface AuthWithGoogleButtonProps {
   content: string;
+  disabled?: boolean;
 }
 
 const AuthWithGoogleButton: React.FC<AuthWithGoogleButtonProps> = ({
   content,
+  disabled,
 }) => {
   return (
     <button
+      disabled={disabled}
       className={`${formElementClasses} ${formButtonClasses} flex justify-center items-center`}
     >
       {content}{" "}
