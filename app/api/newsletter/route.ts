@@ -1,3 +1,4 @@
+import { isEmailValidation } from "@/lib/email-validation";
 import { isEmailInBase, saveEmailToDatabase } from "@/lib/newsletter";
 import { NextRequest } from "next/server";
 
@@ -5,7 +6,7 @@ export async function POST(req: NextRequest) {
 
     const {email} = await req.json()
 
-    if (!email || email.trim() === "" || !email.includes("@")) {
+    if (!isEmailValidation(email)) {
         return Response.json({
             message: "Invalid email address provided."
         }, {status: 400})
