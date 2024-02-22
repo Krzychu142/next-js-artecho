@@ -51,7 +51,7 @@ const AsideNavigation: React.FC<AsideNavigationProps> = ({
       <aside
         className={`${
           isAsideNavigationVisible ? "w-screen sm:w-2/3 xl:w-1/3" : "w-0"
-        } fixed z-50 h-screen bg-black top-0 right-0 text-white flex flex-col overflow-hidden transition-all duration-300`}
+        } fixed z-40 h-screen bg-black top-0 right-0 text-white flex flex-col overflow-hidden transition-all duration-300`}
       >
         <div className="flex justify-between items-center border-b-2 border-custom-blue py-4 px-2">
           <h3 className="uppercase text-2xl md:text-3xl">Menu</h3>
