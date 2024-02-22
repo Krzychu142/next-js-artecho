@@ -28,6 +28,7 @@ const AuthFormPasswordInput = forwardRef<
         className={`${formElementClasses} pr-10`}
         name={name}
         ref={ref}
+        required
       />
 
       {showPassword ? (

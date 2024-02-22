@@ -37,7 +37,13 @@ export async function POST(req: NextRequest) {
         }, {status: 422});
     }
 
+    if(!approval) {
+        return Response.json({
+            message: "Accept the regulations before registration."
+        }, {status: 422});
+    }
+
     return Response.json({
-        message: "Welcome in the club."
+        message: "Verification link sent to email."
     }, {status: 200});
 }

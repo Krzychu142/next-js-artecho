@@ -4,7 +4,10 @@ import { formButtonClasses } from "./style-classes/formButtonClasses";
 
 const SignUpButton = () => {
   return (
-    <button className={`${formElementClasses} ${formButtonClasses}`}>
+    <button
+      type="submit"
+      className={`${formElementClasses} ${formButtonClasses}`}
+    >
       Sign up
     </button>
   );
