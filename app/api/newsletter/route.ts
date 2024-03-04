@@ -1,4 +1,4 @@
-import { isEmailValidation } from "@/lib/email-validation";
+import { isEmailValidation } from "@/lib/helpers/email-validation";
 import { isEmailInBase, saveEmailToDatabase } from "@/lib/newsletter";
 import { NextRequest } from "next/server";
 
