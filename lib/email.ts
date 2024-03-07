@@ -16,7 +16,7 @@ export const transporter = nodemailer.createTransport({
 export function prepareEmailVerificationMessage(token: string, expires: Date) {
     return {
         subject: 'ArtEcho | Welcome | Email verification',
-        html: `Welcom in ArtEcho. To confirm your email click on the link below: ${`${process.env.NEXT_PUBLIC_URL!}/auth/verifi?token=${token}`}. You have until ${expires}. If that's not you, ignore these messages.`
+        html: `Welcom in ArtEcho. To confirm your email click on the link below: ${`${process.env.NEXT_PUBLIC_URL!}auth/verifi?token=${token}`}. You have until ${expires}. If that's not you, ignore these messages.`
     }
 }
 

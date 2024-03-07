@@ -1,5 +1,5 @@
 import { isEmailValidation } from "./helpers/email-validation";
-import { isEmailInBase } from "./newsletter";
+import { getUserByEmail } from "./user";
 
 export interface SignupData  {
     fullName: string;
@@ -25,9 +25,17 @@ export async function validateSignupData(data: SignupData): Promise<Response | n
         }, {status: 422});
     }
 
-    if(await isEmailInBase(email)) {
+    const user = await getUserByEmail(email)
+
+    if(user && !user.emailVerified) {
         return Response.json({
-            message: "The account with this email already exists.."
+            message: "You need to confirm your email. If you did not receive the message, please contact support."
+        }, {status: 409})
+    }
+
+    if(user) {
+        return Response.json({
+            message: "The account with this email already exists."
         }, {status: 409})
     }
 

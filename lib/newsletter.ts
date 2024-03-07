@@ -7,14 +7,9 @@ export async function isEmailInBase(email: string): Promise<boolean> {
 }
 
 export async function saveEmailToDatabase(email: string): Promise<void> {
-    try {
-        await prisma.newsletterSubscribers.create({
-            data: {
-                email: email
-            }
-        });
-    } catch(error) {
-        throw new Error()
-    }
-
+    await prisma.newsletterSubscribers.create({
+        data: {
+            email: email
+        }
+    });
 }
