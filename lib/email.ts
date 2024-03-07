@@ -1,5 +1,3 @@
-import { PrismaClient } from "@prisma/client/extension";
-
 const nodemailer = require("nodemailer");
 
 export const transporter = nodemailer.createTransport({
@@ -15,19 +13,29 @@ export const transporter = nodemailer.createTransport({
     },
 })
 
-export const  sendEmailWithVerificationToken = async (email: string, verificationUrl: string, expires: Date, prisma?: PrismaClient) => {
-    const mailOptions = {
-        from: 'kustosz142@gmail.com',
-        to: email,
-        subject: "Email verification",
-        html: `Someone registered from this email. If that's you, click on this link to confirm your email. 
-        The link is valid for ${expires} hours after you receive the email.  <a href="${verificationUrl}">${verificationUrl}</a>`
-    };
-
-    try {
-        return await transporter.sendMail(mailOptions);
-    } catch (error) {
-        return error
+export function prepareEmailVerificationMessage(token: string, expires: Date) {
+    return {
+        subject: 'ArtEcho | Welcome | Email verification',
+        html: `Welcom in ArtEcho. To confirm your email click on the link below: ${`${process.env.NEXT_PUBLIC_URL!}/auth/verifi?token=${token}`}. You have until ${expires}. If that's not you, ignore these messages.`
     }
+}
+
+
+export async function sendEmail(to: string, subject: string, html: string) {
     
+    const mailOptions = {
+        // ONLY TO TEST TO THROW AN ERROR from: "kustosz142@gmail.com",
+        from: 'krzysztofradzieta@outlook.com',
+        to: to, 
+        subject: subject,
+        html: html
+    }
+
+    try { 
+        const result = await transporter.sendMail(mailOptions);
+        return result
+    } catch (error) {
+        throw new Error("Email send error")
+    }
+
 }

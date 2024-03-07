@@ -1,61 +1,16 @@
-import { PrismaClient } from "@prisma/client/extension";
-import { createHash } from "./crypt";
-import { sendEmailWithVerificationToken } from "./email";
-import prisma from "./prisma";
-import { createVerificationToken } from "./verification-token";
+import prisma from "./prisma"
 
-export async function isEmailInBase(email: string, prisma?: PrismaClient): Promise<boolean> {
-    return !!(await prisma.user.findUnique({
-        where: { email }
-    }));
-}
-
-export async function createUser(name: string, email: string, password: string, approval: boolean, prisma?: PrismaClient) {
-    const hashedPassword = createHash(password);
-
-    return await prisma.user.create({
-        data: {
-            name,
-            email,
-            password: hashedPassword,
-            approval,
-            role: email === process.env.ADMIN_EMAIL ? "admin" : "user"
-        }
-    })
-}
-
-
-export async function registerUser(fullName: string, email: string, password: string, approval: boolean) {
-    const hashedPassword = createHash(password);
-
+export async function createUser(name: string, email: string, password: string) {
     try {
-        const result = await prisma.$transaction(async (transactionPrisma) => {
-
-            if (await isEmailInBase(email)) {
-                throw new Error("The account with this email already exists.");
+        await prisma.user.create({
+            data: {
+                name: name, 
+                email: email,
+                password: password,
+                role: email === process.env.ADMIN_EMAIL ? "admin" : "user"
             }
-
-            const user = createUser(fullName, email, hashedPassword, approval, transactionPrisma)
-
-
-            const verificationToken = await createVerificationToken(email);
-
-
-            const verificationUrl = `https://yourdomain.com/verify?token=${verificationToken.token}`;
-            await sendEmailWithVerificationToken(email, verificationUrl, verificationToken.expires, transactionPrisma);
-
-            return user;
-        });
-
-        return {
-            success: true,
-            message: 'Verification link sent to email.',
-            user: result
-        };
+        }) 
     } catch (error) {
-        return {
-            success: false,
-            message: 'Ups... something goes wrong. Please try later.'
-        };
+        throw new Error("Error when creating user")
     }
 }

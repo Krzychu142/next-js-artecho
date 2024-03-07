@@ -1,5 +1,5 @@
-import { isEmailValidation } from "../helpers/email-validation";
-import { isEmailInBase } from "../newsletter";
+import { isEmailValidation } from "./helpers/email-validation";
+import { isEmailInBase } from "./newsletter";
 
 export interface SignupData  {
     fullName: string;
@@ -13,7 +13,7 @@ export async function validateSignupData(data: SignupData): Promise<Response | n
 
     const { fullName, email, password, confirmPassword, approval } = data;
 
-    if(!fullName || fullName.trim() === "" ) {
+    if(!fullName || fullName.trim() === "") {
         return Response.json({
             message: "Full name can't be empty."
         }, {status: 422});

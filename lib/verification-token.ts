@@ -1,23 +1,30 @@
-import { PrismaClient } from "@prisma/client/extension";
-import { generateVerificationToken } from "./crypt";
-import prisma from "./prisma";
+import prisma from './prisma';
+import { verificationTokenType } from '@/types/VerificationTokenType';
 
-export async function createVerificationToken(email: string, prisma?: PrismaClient) {
-  const { identifier, token, expires } = generateVerificationToken(email);
+export async function createVerificationToken(userEmail: string, verificationToken: string, expires: Date): Promise<verificationTokenType> {
 
-  return await prisma.verificationToken.create({
-      data: {
-        identifier,
-        token,
-        expires
-      }})
+    try {
+        const token = await prisma.verificationToken.create({
+            data: {
+                identifier: userEmail,
+                token: verificationToken,
+                expires: expires,
+            },
+        });
+
+        return token;
+    } catch (error) {
+        throw new Error();
+    }
+
 }
 
-export async function getVerificationToken(identifier: string, token: string, prisma?: PrismaClient) {
-    return await prisma.verificationToken.findUnique({
-      where: {
-        identifier,
-        token
-      }
+export async function findVerificationToken(token: string): Promise<verificationTokenType|null> {
+    const tokenInfo = await prisma.verificationToken.findUnique({
+        where: {
+            token: token
+        }
     })
+
+    return tokenInfo;
 }
