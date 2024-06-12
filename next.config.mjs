@@ -2,7 +2,20 @@
 const nextConfig = {
   // only for dev
   images: {
-    domains: ["m.media-amazon.com", "stoprocent.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'm.media-amazon.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'stoprocent.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 };
 
