@@ -8,7 +8,7 @@ import {
   SearchOutlined,
   ShoppingOutlined,
 } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import {useCallback, useEffect, useState} from "react";
 import AsideNavigation from "./aside-nav";
 import { usePathname } from "next/navigation";
 
@@ -19,25 +19,25 @@ const MainHeader = () => {
     useState(false);
   const path = usePathname();
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     const currentScrollPos = window.scrollY;
 
     setisHeaderVisible(
-      prevScrollPosition > currentScrollPos || currentScrollPos < 10
+        prevScrollPosition > currentScrollPos || currentScrollPos < 10
     );
     setPrevScrollPosition(currentScrollPos);
-  };
+  }, [prevScrollPosition]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [prevScrollPosition, handleScroll]);
+  }, [handleScroll]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [path]);
+  }, []);
 
   return (
     <>
