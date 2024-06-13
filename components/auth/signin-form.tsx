@@ -9,7 +9,7 @@ const SignInForm = () => {
     <form className="w-full flex flex-col gap-4 items-center justify-center mb-8">
       <input type="email" placeholder="Email" className={formElementClasses} />
 
-      {/* <AuthFormPasswordInput placeholder="Password" name="password" /> */}
+       <AuthFormPasswordInput placeholder="Password" name="password" />
 
       <button className={`${formElementClasses} ${formButtonClasses}`}>
         Sign in

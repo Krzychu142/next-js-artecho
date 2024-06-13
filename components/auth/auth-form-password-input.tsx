@@ -50,4 +50,5 @@ const AuthFormPasswordInput = forwardRef<
   );
 });
 
+AuthFormPasswordInput.displayName = "AuthFormPasswordInput";
 export default AuthFormPasswordInput;
