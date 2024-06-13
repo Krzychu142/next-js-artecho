@@ -1,10 +1,9 @@
 import HeroSection from "@/components/main-page/hero-section";
 import ProductsGrid from "@/components/thumbnails/thumbnails-grid";
-import { getAllProducts } from "@/lib/products";
+import {getAllProducts} from "@/lib/products";
 
 async function Products() {
-  const products = await getAllProducts();
-  return products;
+    return await getAllProducts();
 }
 
 export default async function Home() {
