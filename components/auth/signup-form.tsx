@@ -28,7 +28,7 @@ const SignUpForm = () => {
   };
 
   const [message, setMessage] = useState("");
-  const [isMesaageDisplayed, setIsMesaageDisplayed] = useState(false);
+  const [isMessageDisplayed, setIsMessageDisplayed] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const { isVisible, showSpinner, hideSpinner } = useSpinner();
@@ -36,7 +36,7 @@ const SignUpForm = () => {
   const handleOnSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setIsMesaageDisplayed(false);
+    setIsMessageDisplayed(false);
     setIsError(false);
     setMessage("");
     showSpinner();
@@ -53,14 +53,14 @@ const SignUpForm = () => {
       });
 
       if (response && response.status === 200) {
-        setIsMesaageDisplayed(true);
+        setIsMessageDisplayed(true);
         setMessage(response.data.message || "Verification link sent to email.");
         clearForm();
       }
     } catch (error) {
       const axiosError = error as AxiosError<ServerErrorResponseType>;
 
-      setIsMesaageDisplayed(true);
+      setIsMessageDisplayed(true);
       setIsError(true);
       setMessage(
         axiosError.response?.data.message ||
@@ -78,7 +78,7 @@ const SignUpForm = () => {
         className="w-full flex flex-col gap-4 items-center justify-center mb-8"
         onSubmit={(event) => handleOnSubmit(event)}
       >
-        {isMesaageDisplayed && (
+        {isMessageDisplayed && (
           <div className="w-full max-w-80 sm:w-80 lg:w-96 lg:max-w-96">
             <Result message={message} isError={isError} />
           </div>

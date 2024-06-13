@@ -17,7 +17,7 @@ model Product {
   currency         String   @default("PLN")
   addedAt          DateTime @default(now())
   quantity         Int
-  isAvilable       Boolean  @default(true)
+  isAvailable       Boolean  @default(true)
   slug             String   @unique
   images           Image[]
 }

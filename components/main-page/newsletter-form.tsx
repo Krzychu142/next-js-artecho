@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import NewsletterFormButton from "./newsletter-form-button";
 import useMessageVisibility from "@/hooks/useMessageVisibility";
 import Message from "../message";

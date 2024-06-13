@@ -34,7 +34,7 @@ async function main() {
           i % 2 === 0 ? parseFloat((9.99 * i).toFixed(2)) : null,
         currency: "PLN",
         quantity: 100 * i,
-        isAvilable: true,
+        isAvailable: true,
         images: {
           create: imageUrls.map((url) => ({
             url: url,
