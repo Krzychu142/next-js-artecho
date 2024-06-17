@@ -3,7 +3,7 @@ import ProductsGrid from "@/components/thumbnails/thumbnails-grid";
 import {getAllProducts} from "@/lib/products";
 
 async function Products() {
-    return await getAllProducts();
+    return getAllProducts();
 }
 
 export default async function Home() {

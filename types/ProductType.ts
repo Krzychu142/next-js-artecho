@@ -10,7 +10,7 @@ export type ProductType = {
   currency: string;
   addedAt: Date;
   quantity: number;
-  isAvilable: boolean;
+  isAvailable: boolean;
   slug: string;
   images: ImageType[]; 
 };
