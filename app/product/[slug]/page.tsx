@@ -32,7 +32,7 @@ const SingleProductPage: NextPage<SingleProductPageProps> = async ({
     currency,
     addedAt,
     quantity,
-    isAvilable,
+    isAvailable,
     images,
   } = product;
 
