@@ -9,6 +9,7 @@ import React, { useEffect } from "react";
 import { LinkObjectType } from "@/types/LinkObjectType";
 import { IconLinkObjectType } from "@/types/IconLinkObjectType";
 import { usePathname } from "next/navigation";
+import {useSession} from "next-auth/react";
 
 interface AsideNavigationProps {
   isAsideNavigationVisible: boolean;
@@ -24,14 +25,23 @@ const AsideNavigation: React.FC<AsideNavigationProps> = ({
   const pathname = usePathname();
   useEffect(() => {
     setIsAsideNavigationVisible(false);
-  }, [pathname]);
+  }, [pathname, setIsAsideNavigationVisible]);
+
+  const { data: session, status } = useSession();
+
+  console.log('session', session);
+  console.log('status', status);
 
   const linksArray: LinkObjectType[] = [
     { caption: "Home", href: "/" },
     { caption: "Contact", href: "/" },
     { caption: "About", href: "/" },
-    { caption: "Register", href: "/auth/signup" },
-    { caption: "Sign in", href: "/auth/signin" },
+    ...(status !== 'authenticated'
+        ? [
+          { caption: "Register", href: "/auth/signup" },
+          { caption: "Sign in", href: "/auth/signin" },
+        ]
+        : [])
   ];
 
   const iconsLinksArray: IconLinkObjectType[] = [
@@ -71,6 +81,7 @@ const AsideNavigation: React.FC<AsideNavigationProps> = ({
                 </Link>
               </li>
             ))}
+            {status === 'authenticated' && <li><button>LogOut</button></li> }
           </ul>
         </nav>
         <footer className="pb-8">

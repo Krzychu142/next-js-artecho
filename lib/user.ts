@@ -5,3 +5,10 @@ export async function isEmailInBase(email: string): Promise<boolean> {
         where: { email }
     }));
 }
+
+export async function getUserWithAccounts(email: string) {
+    return prisma.user.findUnique({
+        where: {email},
+        include: {accounts: true}
+    });
+}

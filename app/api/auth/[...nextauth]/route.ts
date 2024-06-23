@@ -1,79 +1,78 @@
-import NextAuth from "next-auth/next";
-import GoogleProvider from "next-auth/providers/google";
-import prisma from "@/lib/prisma";
-import { AuthOptions } from "next-auth";
-import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from "bcryptjs";
+import NextAuth, {NextAuthOptions } from "next-auth";
+import GoogleProvider from 'next-auth/providers/google';
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaClient} from '@prisma/client';
+import { getUserWithAccounts } from '@/lib/user';
+import { isEmailInBase } from "@/lib/user";
 
-export const authOptions: AuthOptions = {
+const prisma = new PrismaClient();
+
+const authOptions: NextAuthOptions = {
     session: {
-        strategy: "jwt"
+        strategy: 'jwt'
     },
-    secret: process.env.NEXTAUTH_SECRET,
-    adapter: PrismaAdapter(prisma),
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-            profile(profile) {
-                return({
-                    id: profile.sub,
-                    name: `${profile.given_name} ${profile.family_name}`,
-                    email: profile.email,
-                    image: profile.picture,
-                    role: profile.role? profile.role: "user"
-                })
-            }
-        }),
-        CredentialsProvider({
-            name: "Credentials",
-            credentials: {
-                email: { label: "Email", type: "text", placeholder: "jsmith@example.com" },
-                password: { label: "Password", type: "password" },
-            },
-            async authorize(credentials, req) {
-                if (!credentials) return null;
+            profile: async (profile) => {
+                const email = profile.email;
 
-                const user = await prisma.user.findUnique({
-                    where: {
-                        email: credentials.email,
-                    },
-                });
+                const emailExists = await isEmailInBase(email);
 
-                if (user && user.password && bcrypt.compareSync(credentials.password, user.password)) {
-                    return {
-                        id: user.id,
-                        name: user.name,
-                        email: user.email,
-                        image: user.image,
-                        role: user.role,
-                    };
+                if (emailExists) {
+                    throw new Error("Użytkownik z tym adresem email już istnieje.");
                 }
-                return null;
-            },
-        }),
-        
+
+                return {
+                    id: profile.sub,
+                    email: profile.email,
+                    name: profile.name,
+                    image: profile.picture,
+                    role: 'user'
+                };
+            }
+        })
     ],
-
+    adapter: PrismaAdapter(prisma),
     callbacks: {
-        async jwt({token, user}) {
-            return {
-                ...token,
-                ...user
-            };
+        async jwt({ token, user }) {
+            if (user) {
+                token.id = user.id;
+                token.role = user.role;
+            }
+            return token;
         },
-        async session({session, token}) {
-            session.user.role = token.role;
+        async session({ session, token }) {
+            if (session.user) {
+                session.user.id = token.id;
+                session.user.role = token.role;
+            }
             return session;
-        }
+        },
+        async signIn({ user, account, profile }) {
+            const email = user.email;
+
+            const existingUser = await getUserWithAccounts(email!);
+
+            if (existingUser) {
+                const hasSameProvider = existingUser.accounts.some((acc) => acc.provider === account?.provider);
+
+                if (hasSameProvider) {
+                    return true;
+                } else {
+                    return '/auth/error';
+                }
+            }
+            return true;
+        },
     },
-
     pages: {
-        signIn: '/auth/signin'
-    }
-}
+        signIn: '/auth/signin',
+        error: '/auth/error',
+    },
+    debug: process.env.NODE_ENV === 'development'
+};
 
-const handler = NextAuth(authOptions);
-
-export {handler as GET, handler as POST};
+export const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };

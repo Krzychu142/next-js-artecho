@@ -14,7 +14,7 @@ const SignInForm = () => {
       <button className={`${formElementClasses} ${formButtonClasses}`}>
         Sign in
       </button>
-      <AuthWithGoogleButton content="Sign in with Google" />
+      <AuthWithGoogleButton content="Continue with Google" />
       <div className="flex flex-col gap-1">
         <FormLink
           pContent="Don't have an account yet?"
