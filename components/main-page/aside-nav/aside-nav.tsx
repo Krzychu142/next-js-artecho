@@ -9,7 +9,9 @@ import React, { useEffect } from "react";
 import { LinkObjectType } from "@/types/LinkObjectType";
 import { IconLinkObjectType } from "@/types/IconLinkObjectType";
 import { usePathname } from "next/navigation";
-import {useSession} from "next-auth/react";
+import { useSession } from "next-auth/react";
+import LogoutNavButton from "./logout-nav-button";
+import Spinner from "@/components/spinner/spinner";
 
 interface AsideNavigationProps {
   isAsideNavigationVisible: boolean;
@@ -29,19 +31,20 @@ const AsideNavigation: React.FC<AsideNavigationProps> = ({
 
   const { data: session, status } = useSession();
 
-  console.log('session', session);
-  console.log('status', status);
+  if (status === "loading") {
+    return <Spinner />;
+  }
 
   const linksArray: LinkObjectType[] = [
     { caption: "Home", href: "/" },
     { caption: "Contact", href: "/" },
     { caption: "About", href: "/" },
-    ...(status !== 'authenticated'
-        ? [
+    ...(status !== "authenticated"
+      ? [
           { caption: "Register", href: "/auth/signup" },
           { caption: "Sign in", href: "/auth/signin" },
         ]
-        : [])
+      : []),
   ];
 
   const iconsLinksArray: IconLinkObjectType[] = [
@@ -49,6 +52,9 @@ const AsideNavigation: React.FC<AsideNavigationProps> = ({
     { href: "/", icon: <InstagramOutlined className="text-lg" /> },
     { href: "/", icon: <MailOutlined className="text-lg" /> },
   ];
+
+  const mainLinksClasses =
+    "hover:text-custom-blue transition duration-200 ease-in-out md:text-base text-lg";
 
   return (
     <>
@@ -73,15 +79,12 @@ const AsideNavigation: React.FC<AsideNavigationProps> = ({
           <ul className="flex flex-col gap-4 items-center">
             {linksArray.map((linkObject, index) => (
               <li key={index}>
-                <Link
-                  className="hover:text-custom-blue transition duration-200 ease-in-out md:text-base text-lg"
-                  href={linkObject.href}
-                >
+                <Link className={mainLinksClasses} href={linkObject.href}>
                   {linkObject.caption}
                 </Link>
               </li>
             ))}
-            {status === 'authenticated' && <li><button>LogOut</button></li> }
+            <LogoutNavButton status={status} className={mainLinksClasses} />
           </ul>
         </nav>
         <footer className="pb-8">

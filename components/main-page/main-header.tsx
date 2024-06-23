@@ -9,7 +9,7 @@ import {
   ShoppingOutlined,
 } from "@ant-design/icons";
 import {useCallback, useEffect, useState} from "react";
-import AsideNavigation from "./aside-nav";
+import AsideNavigation from "./aside-nav/aside-nav";
 import { usePathname } from "next/navigation";
 
 const MainHeader = () => {
