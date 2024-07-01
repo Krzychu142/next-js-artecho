@@ -1,4 +1,5 @@
 import React from "react";
+import { signOut } from "next-auth/react";
 
 interface LogoutNavButtonProps {
   status: string;
@@ -11,7 +12,9 @@ const LogoutNavButton: React.FC<LogoutNavButtonProps> = ({
 }) => {
   return status === "authenticated" ? (
     <>
-      <button className={className ? className : ""}>Logout</button>
+      <button onClick={() => signOut()} className={className ? className : ""}>
+        Logout
+      </button>
     </>
   ) : (
     ""
