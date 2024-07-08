@@ -5,6 +5,7 @@ import MainFooter from "@/components/main-page/main-footer";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { League_Spartan, Quicksand } from "next/font/google";
 import Providers from "@/components/providers";
+import SessionProvider from "@/components/auth/session-providers";
 
 export const metadata: Metadata = {
   title: "Art Echo Designe",
@@ -34,9 +35,11 @@ export default function RootLayout({
       <body className="flex flex-col min-h-screen">
         <Providers>
           <AntdRegistry>
-            <MainHeader />
-            <main className="flex-grow">{children}</main>
-            <MainFooter />
+            <SessionProvider>
+              <MainHeader />
+              <main className="flex-grow">{children}</main>
+              <MainFooter />
+            </SessionProvider>
           </AntdRegistry>
         </Providers>
       </body>
