@@ -11,7 +11,7 @@ import { NewsletterSection } from "./newsletter";
 import { LinkObjectType } from "@/types/LinkObjectType";
 
 const MainFooter = () => {
-  const informationsLinksArray: LinkObjectType[] = [
+  const informationLinksArray: LinkObjectType[] = [
     { caption: "Store Regulations", href: "/" },
     { caption: "Privacy Policy", href: "/" },
     { caption: "Return Policy", href: "/" },
@@ -24,9 +24,9 @@ const MainFooter = () => {
       <footer className="min-h-1/2screen bg-black text-white flex flex-col justify-around px-4 md:px-8 py-4 gap-12">
         <div className="grid grid-flow-row md:grid-flow-col justify-start md:justify-around md:items-baseline gap-8 ">
           <div className="flex flex-col space-y-2">
-            <h4 className="capitalize text-lg md:text-xl">More informations</h4>
+            <h4 className="capitalize text-lg md:text-xl">More information</h4>
             <ul className="space-y-2">
-              {informationsLinksArray.map((linkObject, index) => (
+              {informationLinksArray.map((linkObject, index) => (
                 <li key={index}>
                   <Link
                     href={linkObject.href}
@@ -70,7 +70,7 @@ const MainFooter = () => {
             </ul>
           </div>
         </div>
-        <div className="aligne-end justify-center flex gap-2 items-center flex-wrap border-t-2 border-custom-blue pt-12">
+        <div className="align-end justify-center flex gap-2 items-center flex-wrap border-t-2 border-custom-blue pt-12">
           <p>All rights reserved by ArtEcho&reg;</p>
           <Image
             src={miniLogo}

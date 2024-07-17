@@ -1,5 +1,4 @@
 "use client";
-
 import { formElementClasses } from "./style-classes/formElementClasses";
 import AuthWithGoogleButton from "./auth-with-google-button";
 import AuthFormPasswordInput from "./auth-form-password-input";
@@ -111,7 +110,10 @@ const SignUpForm = () => {
           ref={confirmPassword}
         />
         <SignUpButton />
-        <AuthWithGoogleButton content="Continue with Google" />
+        <AuthWithGoogleButton
+          content="Continue with Google"
+          disabled={!approval.current?.checked}
+        />
         <p className="w-full max-w-80 sm:w-80 lg:w-96 lg:max-w-96">
           <input
             type="checkbox"

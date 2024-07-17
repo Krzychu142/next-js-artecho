@@ -3,7 +3,6 @@ import GoogleProvider from 'next-auth/providers/google';
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient} from '@prisma/client';
 import { getUserWithAccounts } from '@/lib/user';
-import { isEmailInBase } from "@/lib/user";
 
 const prisma = new PrismaClient();
 
@@ -17,11 +16,10 @@ const authOptions: NextAuthOptions = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
             profile: async (profile) => {
                 const email = profile.email;
-
-                const emailExists = await isEmailInBase(email);
-
-                if (emailExists) {
-                    throw new Error("Użytkownik z tym adresem email już istnieje.");
+                const userWithAccount = await getUserWithAccounts(email);
+                
+                if (userWithAccount && userWithAccount.accounts[0].provider !== 'google') {
+                    throw new Error("User with this email already exists.");
                 }
 
                 return {
