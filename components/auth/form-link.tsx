@@ -2,15 +2,15 @@ import Link from "next/link";
 import React from "react";
 
 interface FormLinkProps {
-  pContent: string;
+  content: string;
   href: string;
   linkContent: string;
 }
 
-const FormLink: React.FC<FormLinkProps> = ({ pContent, href, linkContent }) => {
+const FormLink: React.FC<FormLinkProps> = ({ content, href, linkContent }) => {
   return (
     <p>
-      {pContent}{" "}
+      {content}{" "}
       <Link
         className="font-bold text-custom-blue transition duration-200 ease-in-out hover:text-black whitespace-nowrap"
         href={href}

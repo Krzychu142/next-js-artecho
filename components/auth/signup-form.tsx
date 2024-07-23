@@ -126,7 +126,7 @@ const SignUpForm = () => {
           of the Online Store and the Privacy Policy and accept their contents.
         </p>
         <FormLink
-          pContent="Do you already have an account?"
+          content="Do you already have an account?"
           href="/auth/signin"
           linkContent="Sign in"
         />
