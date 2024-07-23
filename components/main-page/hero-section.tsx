@@ -2,7 +2,11 @@ import heroImage from "@/public/images/hero-section.jpg";
 import Image from "next/image";
 import Link from "next/link";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  isUserLogged?: boolean;
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ isUserLogged }) => {
   return (
     <section className="h-3/4screen lg:h-screen relative">
       <div className="absolute inset-0 ">
@@ -17,15 +21,15 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-custom-blue bg-opacity-75 z-0"></div>
       <div className="relative flex justify-center items-center h-full flex-col">
         <h1 className="text-white text-3xl md:text-6xl lowercase">
-          New way of designe
+          New way of design
         </h1>
         <Link
-          href="/auth/signup"
+          href={isUserLogged ? "" : "/auth/signup"}
           className={
             "text-white text-sm md:text-xl border-2 p-2 md:p-3 rounded-3xl m-2 md:m-3 transition duration-200 ease-in-out hover:bg-black hover:border-black"
           }
         >
-          register now
+          {isUserLogged ? "buy something" : "register now"}
         </Link>
       </div>
     </section>
