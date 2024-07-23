@@ -4,7 +4,7 @@ import AuthWithGoogleButton from "./auth-with-google-button";
 import AuthFormPasswordInput from "./auth-form-password-input";
 import FormLink from "./form-link";
 import SignUpButton from "./signup-button";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import axios, { AxiosError } from "axios";
 import { ServerErrorResponseType } from "@/types/ServerErrorResponseType";
 import Result from "../result";
@@ -26,6 +26,12 @@ const SignUpForm = () => {
     if (approval.current) approval.current.checked = false;
   };
 
+  const [approvalState, setApprovalState] = useState(false);
+
+  useEffect(() => {
+    setApprovalState(approval.current?.checked || false);
+  }, []);
+
   const [message, setMessage] = useState("");
   const [isMessageDisplayed, setIsMessageDisplayed] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -34,6 +40,19 @@ const SignUpForm = () => {
 
   const handleOnSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (
+      !email.current?.value ||
+      !password.current?.value ||
+      !confirmPassword.current?.value ||
+      !fullName.current?.value ||
+      !approval.current?.checked
+    ) {
+      setIsMessageDisplayed(true);
+      setIsError(true);
+      setMessage("Ups... something went wrong, try again later.");
+      return;
+    }
 
     setIsMessageDisplayed(false);
     setIsError(false);
@@ -109,10 +128,10 @@ const SignUpForm = () => {
           name="confirmPassword"
           ref={confirmPassword}
         />
-        <SignUpButton />
+        <SignUpButton disabled={!approvalState} />
         <AuthWithGoogleButton
           content="Continue with Google"
-          disabled={!approval.current?.checked}
+          disabled={!approvalState}
         />
         <p className="w-full max-w-80 sm:w-80 lg:w-96 lg:max-w-96">
           <input
@@ -121,6 +140,7 @@ const SignUpForm = () => {
             className="accent-custom-blue"
             ref={approval}
             required
+            onChange={(e) => setApprovalState(e.target.checked)}
           />{" "}
           <label htmlFor="approval"></label>I have read the Terms and Conditions
           of the Online Store and the Privacy Policy and accept their contents.
