@@ -10,6 +10,8 @@ import { ServerErrorResponseType } from "@/types/ServerErrorResponseType";
 import Result from "../result";
 import Spinner from "../spinner/spinner";
 import { useSpinner } from "../spinner/useSpinner";
+import useMessageVisibility from "@/hooks/useMessageVisibility";
+import Message from "../message";
 
 const SignUpForm = () => {
   const email = useRef<HTMLInputElement>(null);
@@ -17,6 +19,9 @@ const SignUpForm = () => {
   const confirmPassword = useRef<HTMLInputElement>(null);
   const fullName = useRef<HTMLInputElement>(null);
   const approval = useRef<HTMLInputElement>(null);
+
+  const [isMessageVisible, showMessage] = useMessageVisibility(2000);
+  const [message, setMessage] = useState<string>("");
 
   const clearForm = () => {
     if (email.current) email.current.value = "";
@@ -32,11 +37,21 @@ const SignUpForm = () => {
     setApprovalState(approval.current?.checked || false);
   }, []);
 
-  const [message, setMessage] = useState("");
-  const [isMessageDisplayed, setIsMessageDisplayed] = useState(false);
+  const [responseMessage, setResponseMessage] = useState("");
+  const [isResponseMessageVisible, setIsResponseMessageVisible] =
+    useState(false);
   const [isError, setIsError] = useState(false);
 
   const { isVisible, showSpinner, hideSpinner } = useSpinner();
+
+  const displayMessageOnClickWhenDisabled = () => {
+    if (approval.current?.checked === false) {
+      setMessage(
+        "Confirm Terms, Conditions and Privacy Policy before signing up."
+      );
+      showMessage();
+    }
+  };
 
   const handleOnSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -48,15 +63,15 @@ const SignUpForm = () => {
       !fullName.current?.value ||
       !approval.current?.checked
     ) {
-      setIsMessageDisplayed(true);
+      setIsResponseMessageVisible(true);
       setIsError(true);
-      setMessage("Ups... something went wrong, try again later.");
+      setResponseMessage("Ups... something went wrong, try again later.");
       return;
     }
 
-    setIsMessageDisplayed(false);
+    setIsResponseMessageVisible(false);
     setIsError(false);
-    setMessage("");
+    setResponseMessage("");
     showSpinner();
 
     const apiURL = process.env.NEXT_PUBLIC_API_URL!;
@@ -71,16 +86,18 @@ const SignUpForm = () => {
       });
 
       if (response && response.status === 200) {
-        setIsMessageDisplayed(true);
-        setMessage(response.data.message || "Verification link sent to email.");
+        setIsResponseMessageVisible(true);
+        setResponseMessage(
+          response.data.message || "Verification link sent to email."
+        );
         clearForm();
       }
     } catch (error) {
       const axiosError = error as AxiosError<ServerErrorResponseType>;
 
-      setIsMessageDisplayed(true);
+      setIsResponseMessageVisible(true);
       setIsError(true);
-      setMessage(
+      setResponseMessage(
         axiosError.response?.data.message ||
           "Ups... something went wrong, try again later."
       );
@@ -91,14 +108,15 @@ const SignUpForm = () => {
 
   return (
     <>
+      <Message isVisible={isMessageVisible}>{message}</Message>
       {isVisible && <Spinner />}
       <form
         className="w-full flex flex-col gap-4 items-center justify-center mb-8"
         onSubmit={(event) => handleOnSubmit(event)}
       >
-        {isMessageDisplayed && (
+        {isResponseMessageVisible && (
           <div className="w-full max-w-80 sm:w-80 lg:w-96 lg:max-w-96">
-            <Result message={message} isError={isError} />
+            <Result message={responseMessage} isError={isError} />
           </div>
         )}
 
@@ -132,18 +150,23 @@ const SignUpForm = () => {
         <AuthWithGoogleButton
           content="Continue with Google"
           disabled={!approvalState}
+          onClick={displayMessageOnClickWhenDisabled}
         />
         <p className="w-full max-w-80 sm:w-80 lg:w-96 lg:max-w-96">
           <input
             type="checkbox"
             name="approval"
-            className="accent-custom-blue"
+            className="accent-custom-blue peer"
             ref={approval}
             required
             onChange={(e) => setApprovalState(e.target.checked)}
-          />{" "}
-          <label htmlFor="approval"></label>I have read the Terms and Conditions
-          of the Online Store and the Privacy Policy and accept their contents.
+            id="approval-checkbox"
+          />
+          <label htmlFor="approval-checkbox">
+            {" "}
+            I have read the Terms and Conditions of the Online Store and the
+            Privacy Policy and accept their contents.
+          </label>
         </p>
         <FormLink
           content="Do you already have an account?"

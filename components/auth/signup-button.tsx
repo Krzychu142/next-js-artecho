@@ -13,7 +13,6 @@ const SignUpButton: React.FC<SignupButton> = ({ disabled }) => {
       className={`${formElementClasses} ${formButtonClasses} ${
         disabled ? "cursor-not-allowed" : "cursor-pointer"
       }`}
-      // disabled={disabled}
     >
       Sign up
     </button>

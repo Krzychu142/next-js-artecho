@@ -9,7 +9,7 @@ const SignInForm = () => {
     <form className="w-full flex flex-col gap-4 items-center justify-center mb-8">
       <input type="email" placeholder="Email" className={formElementClasses} />
 
-       <AuthFormPasswordInput placeholder="Password" name="password" />
+      <AuthFormPasswordInput placeholder="Password" name="password" />
 
       <button className={`${formElementClasses} ${formButtonClasses}`}>
         Sign in
@@ -17,12 +17,12 @@ const SignInForm = () => {
       <AuthWithGoogleButton content="Continue with Google" />
       <div className="flex flex-col gap-1">
         <FormLink
-          pContent="Don't have an account yet?"
+          content="Don't have an account yet?"
           href="/auth/signup"
           linkContent="Sign up"
         />
         <FormLink
-          pContent="Did you forget your password?"
+          content="Did you forget your password?"
           href="/auth/signup"
           linkContent="Reset"
         />

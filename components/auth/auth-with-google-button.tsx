@@ -8,13 +8,19 @@ import { signIn } from "next-auth/react";
 interface AuthWithGoogleButtonProps {
   content: string;
   disabled?: boolean;
+  onClick?: Function;
 }
 
 const AuthWithGoogleButton: React.FC<AuthWithGoogleButtonProps> = ({
   content,
   disabled,
+  onClick,
 }) => {
   const handleGoogleSignIn = async () => {
+    if (onClick) {
+      onClick();
+      return;
+    }
     try {
       await signIn("google");
     } catch (error) {
@@ -25,7 +31,7 @@ const AuthWithGoogleButton: React.FC<AuthWithGoogleButtonProps> = ({
   return (
     <button
       type="button"
-      disabled={disabled}
+      // disabled={disabled}
       className={`${formElementClasses} ${formButtonClasses} flex justify-center items-center ${
         disabled ? "cursor-not-allowed" : "cursor-pointer"
       } `}
